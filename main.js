@@ -4,6 +4,10 @@ let inputList = [];
 let found = [];
 let historyTime = [];
 
+window.onload = function() {
+    updateList();
+};
+
 function UserInput(num) {
     // 1. 從輸入框「撈出」資料
     inputList = document.getElementById("foodListInput").value;
