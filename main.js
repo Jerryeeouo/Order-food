@@ -1,8 +1,8 @@
-let alreadyPick = [];
+let alreadyPick = JSON.parse(localStorage.getItem('alreadyPick')) || [];
+let historyTime = JSON.parse(localStorage.getItem('historyLog')) || [];
 let results = [];
 let inputList = [];
 let found = [];
-let historyTime = [];
 
 window.onload = function() {
     updateList();
