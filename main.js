@@ -1,5 +1,5 @@
 let alreadyPick = JSON.parse(localStorage.getItem('alreadyPick')) || [];
-let historyTime = JSON.parse(localStorage.getItem('historyLog')) || [];
+let historyTime = JSON.parse(localStorage.getItem('historyTime')) || [];
 let results = [];
 let inputList = [];
 let found = [];
