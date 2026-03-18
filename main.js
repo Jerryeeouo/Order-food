@@ -4,10 +4,6 @@ let results = [];
 let inputList = [];
 let found = [];
 
-window.onload = function() {
-    updateList();
-};
-
 function UserInput(num) {
     // 1. 從輸入框「撈出」資料
     inputList = document.getElementById("foodListInput").value;
@@ -68,41 +64,32 @@ function getnum(foodList,num) {
 }
 
 function draw(Numbers, count) {
-    // 1. 複製一份清單，避免原始清單被改變
     let Seatnum = [...Numbers];
     
-    // 2. 隨機打亂順序
    Seatnum.sort(function(a, b) {
     return Math.random() - 0.5;
    });
-    // 3. 取出前 count 個
+  
     let picked = Seatnum.slice(0, count);
     
     if(picked.length >= count){
       results.push(...picked);
     }else if(picked.length < count){
-      let PickedList = [];
       let foundnum = [];
-      for (let name of alreadyPick) {
-         if (!found.includes(name)) {
-            PickedList.push(name);
-         }
-      }
-      for (let name of found) {
-         if (!picked.includes(name)) {
-            foundnum.push(name);
-         }
-      }
-      alreadyPick = [];
-      alreadyPick = PickedList;
       
-      historyTime = historyTime.filter(item => !found.includes(item.id));
-
+      alreadyPick = [];
+      
       results.push(...picked);
-      foundnum.sort(function(a, b) {
+      foundnum = found.filter(num => !results.includes(num));
+      
+      historyTime = [];
+
+      found.sort(function(a, b) {
         return Math.random() - 0.5;
       });
-      picked = foundnum.slice(0, count-picked.length);
+      
+      picked= [];
+      picked = foundnum.slice(0, count-Seatnum.length);
       results.push(...picked);
     }
 }
