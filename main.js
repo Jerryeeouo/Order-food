@@ -4,8 +4,9 @@ let results = [];
 let inputList = [];
 let found = [];
 
-function UserInput(num) {
+updateList();
 
+function UserInput(num) {
     inputList = document.getElementById("foodListInput").value;
     
     getnum(inputList,num);
@@ -16,7 +17,9 @@ function getnum(foodList,num) {
   found = [];
   let Numbers = [];
     
+    // 3. 用 forEach 迴圈開始檢查每一行
    lines.forEach(function(line) {
+        // 嘗試在這一行搜尋「忠」後面跟著兩個數字
       const seat = /忠(\d{2})/g;
       let match;
      
@@ -94,8 +97,48 @@ function updateList() {
     const alreadyList = historyTime.slice().reverse();
   
     const htmlContent = alreadyList.map(function(item) {
-        return "<div>" + item.id + " - " + item.date + "剩餘免疫次數" + item.protect + "</div>";
+        return `
+            <div class="list-item">
+                ${item.id} - ${item.date} (剩餘免疫: ${item.protect}次)
+                <button onclick="deleteHistory('${item.id}')" class = "delete-button">刪除</button>
+            </div>`;
     }).join('');
     
     displayArea.innerHTML = htmlContent;
+}
+
+function deleteHistory(id){
+  historyTime = historyTime.filter(num => num.id !== id);
+  localStorage.setItem('historyTime', JSON.stringify(historyTime));
+  updateList();
+}
+
+function numAdd(){
+  const inputNum = document.getElementById("numInput");
+  let id = inputNum.value.trim();
+  
+  id = id.padStart(2, '0');
+  if (isNaN(id) || id.length > 2 || id === "00" || id > "31") {
+    alert("請輸入正確的兩位數座號");
+    return;
+  }
+  
+  const now = new Date();
+  const date = (now.getMonth() + 1) + "/" + now.getDate();
+
+  if (historyTime.some(item => item.id == id)) {
+    
+    historyTime = historyTime.filter(num => num.id !== id);
+    historyTime.push({ id: id, date: date, protect:4});
+
+    localStorage.setItem('historyTime', JSON.stringify(historyTime));
+    updateList();
+    numInput.value = "";
+    return;
+  }
+  
+  historyTime.push({ id: id, date: date, protect:4});
+  localStorage.setItem('historyTime', JSON.stringify(historyTime));
+  updateList();
+  numInput.value = "";
 }
