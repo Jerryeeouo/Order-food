@@ -4,10 +4,6 @@ let results = [];
 let inputList = [];
 let found = [];
 
-window.onload = function() {
-    updateList();
-};
-
 function UserInput(num) {
     inputList = document.getElementById("foodListInput").value;
     
@@ -143,3 +139,7 @@ function numAdd(){
   updateList();
   numInput.value = "";
 }
+
+window.onload = function() {
+    updateList();
+};
