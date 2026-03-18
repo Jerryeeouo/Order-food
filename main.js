@@ -5,10 +5,9 @@ let inputList = [];
 let found = [];
 
 function UserInput(num) {
-    // 1. 從輸入框「撈出」資料
+
     inputList = document.getElementById("foodListInput").value;
     
-    // 2. 呼叫你的機器
     getnum(inputList,num);
 }
 
@@ -17,46 +16,49 @@ function getnum(foodList,num) {
   found = [];
   let Numbers = [];
     
-    // 3. 用 forEach 迴圈開始檢查每一行
    lines.forEach(function(line) {
-        // 嘗試在這一行搜尋「忠」後面跟著兩個數字
-      const regex = /忠(\d{2})/g;
+      const seat = /忠(\d{2})/g;
       let match;
      
-      while ((match = regex.exec(line)) !== null) {
-        // match[0] 是 "忠22"，match[1] 是 "22"
+      while ((match = seat.exec(line)) !== null) {
          const seat = match[1];  
          
          if (!found.includes(seat)) {
            found.push(seat);
          }
-            // found[0] 就是抓到的內容，例如 "忠22"
-         if (found && !Numbers.includes(seat)) {
-           if(!alreadyPick.includes(seat) && !results.includes(seat)){  
-              Numbers.push(seat);
-           }
-         }
       }
-   });
+    });
   
+    historyTime.forEach(item => {
+      if (found.includes(item.id)) {
+         item.protect -= 1;
+      }
+    });
+        
+    historyTime = historyTime.filter(item => item.protect > 0);
+    alreadyPick = historyTime.map(item => item.id);
+        
+    found.forEach(seat => {
+      if (!alreadyPick.includes(seat)) {
+        Numbers.push(seat);
+      }
+    });
+
   draw(Numbers, num);
+  
   alert("今日取餐：" + results.join("、"));
   
   const now = new Date();
   const date = (now.getMonth() + 1) + "/" + now.getDate();
 
-  // 更新邏輯用的名單
-  alreadyPick.push(...results); 
-
-  // 更新顯示用的名單
   results.forEach(seat => {
-    historyTime.push({ id: seat, date: date });
+    historyTime.push({ id: seat, date: date, protect:4});
   });
   
   updateList();
   
   localStorage.setItem('alreadyPick', JSON.stringify(alreadyPick));
-  localStorage.setItem('historyLog', JSON.stringify(historyTime));
+  localStorage.setItem('historyTime', JSON.stringify(historyTime));
 
   results = [];
   inputList = [];
@@ -66,7 +68,7 @@ function getnum(foodList,num) {
 function draw(Numbers, count) {
     let Seatnum = [...Numbers];
     
-   Seatnum.sort(function(a, b) {
+    Seatnum.sort(function(a, b) {
     return Math.random() - 0.5;
    });
   
@@ -75,32 +77,24 @@ function draw(Numbers, count) {
     if(picked.length >= count){
       results.push(...picked);
     }else if(picked.length < count){
-      let foundnum = [];
-      
-      alreadyPick = [];
-      
       results.push(...picked);
-      foundnum = found.filter(num => !results.includes(num));
       
-      historyTime = [];
-
-      found.sort(function(a, b) {
-        return Math.random() - 0.5;
-      });
+      let protected = historyTime.filter(num => found.includes(num.id));
+      protected.sort((a, b) => a.protect - b.protect);
       
-      picked= [];
-      picked = foundnum.slice(0, count-Seatnum.length);
-      results.push(...picked);
+      historyTime = historyTime.filter(num => !protected.includes(num.id));
+      
+      let protectMin = protected.slice(0, count-picked.length);
+      results.push(...protectMin.map(data => data.id));
     }
 }
 
 function updateList() {
     const displayArea = document.getElementById("pickedList");
-   // 1. 先用 slice() 複製一份，再用 reverse() 把它反轉
     const alreadyList = historyTime.slice().reverse();
   
     const htmlContent = alreadyList.map(function(item) {
-        return "<div>" + item.id + " - " + item.date + "</div>";
+        return "<div>" + item.id + " - " + item.date + "剩餘免疫次數" + item.protect + "</div>";
     }).join('');
     
     displayArea.innerHTML = htmlContent;
