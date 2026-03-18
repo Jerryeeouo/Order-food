@@ -65,7 +65,6 @@ function getnum(foodList,num) {
 
   results = [];
   inputList = [];
-  console.log(alreadyPick);
 }
 
 function draw(Numbers, count) {
