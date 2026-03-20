@@ -61,7 +61,7 @@ h3 {
     width: 100%;
     height: 80px;
     font-family: "Noto Sans TC";
-    font-size: 64px;
+    font-size: 56px;
     background: white;
     border-radius: 12px;
     padding: 15px;
@@ -80,4 +80,11 @@ h3 {
   width: 100%;
   height: 150px;
   margin-top: 50px;
+}
+
+.delete-button{
+  font-size: 56px;
+  background: E07A5F;
+  color: F4F1DE;
+  font-family: "Noto Sans TC";
 }
