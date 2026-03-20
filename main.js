@@ -86,7 +86,7 @@ function draw(Numbers, count) {
     }
 }
 
-function window.updateList() {
+window.updateList() {
     const displayArea = document.getElementById("pickedList");
     if (!Array.isArray(historyTime)) return;
     const alreadyList = [...historyTime].reverse();
