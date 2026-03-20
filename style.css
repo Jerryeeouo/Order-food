@@ -104,13 +104,21 @@ h3 {
 }   
 
 .draw-btn {
-  font-weight: 750;
-  font-size: 56px;
-  background-color: #4a4e69;
-  color: white;
-  font-family: "Noto Sans TC";
-  border-radius: 20px;
-  border: none;
+    font-weight: 750;
+    font-size: 56px;
+    background-color: #4a4e69;
+    color: white;
+    font-family: "Noto Sans TC";
+    border-radius: 20px;
+    border: none;
+}
+
+#in-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 50px;
 }    
 
 .list-item {
