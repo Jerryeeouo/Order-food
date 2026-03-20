@@ -26,7 +26,7 @@
         onValue(cloudData, (d) => {
             const data = d.val();
             if (data) {
-                window.historyTime = data; 
+                window.historyTime = data || []; 
                 if (typeof updateList == "function") updateList(); 
             }
             
