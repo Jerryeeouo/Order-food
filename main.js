@@ -97,7 +97,7 @@ window.updateList = function() {
     const htmlContent = alreadyList.map(function(item) {
         return `
             <div class="list-item">
-                ${item.id} - ${item.date} (剩餘免疫: ${item.protect}次)
+                ${item.id} - ${item.date} 剩餘免疫: ${item.protect}次
                 <button onclick="deleteHistory('${item.id}')" class = "delete-button">刪除</button>
             </div>`;
     }).join('');
