@@ -90,12 +90,12 @@ h3 {
 .delete-button{
   font-weight: 750;
   font-size: 56px;
-  background-color: E07A5F;
+  background-color: #E07A5F;
   color: white;
   font-family: "Noto Sans TC";
   border: none;
 }
 
 .delete-button:active{
-    background-color: 540B0E;
+  background-color: #540B0E;
 }
