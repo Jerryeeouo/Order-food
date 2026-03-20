@@ -33,7 +33,6 @@
             if(loading) loading.style.display = "none";
         },(error) => {
             console.error("Firebase 連線錯誤：", error);
-            // 出錯也要關掉圈圈，不然會卡死
             document.getElementById("loading-screen").style.display = "none";
         });
     
@@ -72,7 +71,7 @@
     <button onclick="UserInput(4)" class = "draw-btn">4人</button>
   </div>    
   <div id = "in-list">
-    <input type="text" id="numInput" placeholder="輸入學號">
+    <input type="text" id="numInput" placeholder="輸入座號">
     <button onclick="numAdd()" id="numInput-btn">手動加入名單</button>
   </div>
   
