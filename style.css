@@ -94,6 +94,13 @@ h3 {
     margin-top: 50px;
 }
 
+#draw-box {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 100%;
+}   
+
 .list-item {
     width: 100%;
     height: 100px;
