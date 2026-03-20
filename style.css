@@ -95,10 +95,12 @@ h3 {
 }
 
 #draw-box {
+    margin-top: 25px;
     justify-content: center;
     align-items: center;
     display: flex;
     width: 100%;
+    gap: 10px;
 }   
 
 .draw-btn {
