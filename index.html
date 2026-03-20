@@ -25,10 +25,9 @@
 
         onValue(cloudData, (d) => {
             const data = d.val();
-            if (data) {
-                window.historyTime = data || []; 
-                if (typeof updateList == "function") updateList(); 
-            }
+            
+            window.historyTime = data || []; 
+            if (typeof updateList == "function") updateList(); 
             
             const loading = document.getElementById("loading-screen");
             if(loading) loading.style.display = "none";
