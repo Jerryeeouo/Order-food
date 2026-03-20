@@ -165,7 +165,7 @@ h3 {
     transition: transform 0.2s;
 }
 
-.pickedList{
+#pickedList{
   display: flex;
   justify-content: center;
   align-items: center;
