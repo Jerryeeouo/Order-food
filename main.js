@@ -137,7 +137,6 @@ function numAdd(){
   }
   
   historyTime.push({ id: id, date: date, protect:4});
-  localStorage.setItem('historyTime', JSON.stringify(historyTime));
   
   saveCloud();
   numInput.value = "";
