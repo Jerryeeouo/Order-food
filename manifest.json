@@ -3,15 +3,10 @@
   "name": "班級取餐抽籤管理系統",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "螢幕擷取畫面 2026-03-20 220920.png",
       "type": "image/png",
       "sizes": "192x192"
     },
-    {
-      "src": "icon-512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
   ],
   "start_url": "./index.html",
   "background_color": "#ffffff",
