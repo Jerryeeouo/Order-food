@@ -141,3 +141,7 @@ function numAdd(){
   saveCloud();
   numInput.value = "";
 }
+
+window.UserInput = UserInput;
+window.numAdd = numAdd;
+window.deleteHistory = deleteHistory;
