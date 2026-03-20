@@ -65,7 +65,7 @@ h3 {
     width: 80%;
     height: 80px;
     font-family: "Noto Sans TC";
-    font-weight: 500;
+    font-weight: 750;
     font-size: 56px;
     background: white;
     border-radius: 12px;
@@ -93,4 +93,9 @@ h3 {
   background-color: E07A5F;
   color: white;
   font-family: "Noto Sans TC";
+  border: none;
+}
+
+.delete-button:active{
+    background-color: 540B0E;
 }
