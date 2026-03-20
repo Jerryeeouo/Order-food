@@ -61,6 +61,12 @@ h3 {
     100% { transform: rotate(360deg); }
 }
 
+#title-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #foodListInput {
     width: 80%;
     min-height: 150px;  
@@ -68,7 +74,7 @@ h3 {
     border: 2px solid #6d6875;
     border-radius: 12px;
     
-    font-size: 80px;
+    font-size: 50px;
     line-height: 1.6;       
     color: #333;
 
