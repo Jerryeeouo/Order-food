@@ -1,7 +1,42 @@
+<html lang="zh-TW">
 <link rel="stylesheet" href="style.css">
-
 <head>
+    <script type="module" defer>
+    
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyDMCzDtnjy690t9vqLap8zWCnBlz-qURc0",
+          authDomain: "pick-up-food.firebaseapp.com",
+          projectId: "pick-up-food",
+          storageBucket: "pick-up-food.firebasestorage.app",
+          messagingSenderId: "614546159516",
+          appId: "1:614546159516:web:af51ed007e7e475539fa59",
+          measurementId: "G-057863SWXH"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const cloudData = ref(db, 'historyTime');
+
+        window.Update = (data) => set(cloudData, data);
+
+        onValue(cloudData, (d) => {
+            const data = d.val();
+            if (data) {
+                window.historyTime = data; 
+                if (typeof updateList == "function") updateList(); 
+            }
+            
+            const loading = document.getElementById("loading-screen");
+            if(loading) loading.style.display = "none";
+        });
+    
+    </script>
+
     <title>取餐抽籤系統</title>
+    
 </head>
 <body>
     <script src="main.js"></script>
