@@ -1,5 +1,5 @@
-let alreadyPick = JSON.parse(localStorage.getItem('alreadyPick')) || [];
-let historyTime = JSON.parse(localStorage.getItem('historyTime')) || [];
+let alreadyPick = [];
+let historyTime = [];
 let results = [];
 let inputList = [];
 let found = [];
@@ -56,10 +56,7 @@ function getnum(foodList,num) {
     historyTime.push({ id: seat, date: date, protect:4});
   });
   
-  updateList();
-  
-  localStorage.setItem('alreadyPick', JSON.stringify(alreadyPick));
-  localStorage.setItem('historyTime', JSON.stringify(historyTime));
+  saveCloud()
 
   results = [];
   inputList = [];
@@ -89,10 +86,11 @@ function draw(Numbers, count) {
     }
 }
 
-function updateList() {
+function window.updateList() {
     const displayArea = document.getElementById("pickedList");
-    const alreadyList = historyTime.slice().reverse();
-  
+    if (!Array.isArray(historyTime)) return;
+    const alreadyList = [...historyTime].reverse();
+    
     const htmlContent = alreadyList.map(function(item) {
         return `
             <div class="list-item">
@@ -104,10 +102,15 @@ function updateList() {
     displayArea.innerHTML = htmlContent;
 }
 
-function deleteHistory(id){
-  historyTime = historyTime.filter(num => num.id !== id);
-  localStorage.setItem('historyTime', JSON.stringify(historyTime));
-  updateList();
+function saveCloud() {
+    if (typeof window.Update === "function") {
+        window.Update(historyTime); 
+    }
+}
+
+function deleteHistory(id) {
+    historyTime = historyTime.filter(num => num.id !== id);
+    saveCloud();
 }
 
 function numAdd(){
@@ -128,18 +131,14 @@ function numAdd(){
     historyTime = historyTime.filter(num => num.id !== id);
     historyTime.push({ id: id, date: date, protect:4});
 
-    localStorage.setItem('historyTime', JSON.stringify(historyTime));
-    updateList();
+    saveCloud();
     numInput.value = "";
     return;
   }
   
   historyTime.push({ id: id, date: date, protect:4});
   localStorage.setItem('historyTime', JSON.stringify(historyTime));
-  updateList();
+  
+  saveCloud();
   numInput.value = "";
 }
-
-window.onload = function() {
-    updateList();
-};
