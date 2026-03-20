@@ -1,1 +1,21 @@
-
+{
+  "short_name": "取餐系統",
+  "name": "班級取餐抽籤管理系統",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "./",
+  "theme_color": "#4A90E2"
+}
