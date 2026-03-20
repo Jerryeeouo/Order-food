@@ -8,7 +8,7 @@ html {
 
 body { 
   margin: 0; 
-  background-color: #EDEDE9; 
+  background-color: #f2e9e4; 
   font-family: "Noto Sans TC"; 
 }
 
@@ -16,7 +16,7 @@ h1 {
   font-family: "Noto Sans TC";
   font-size: 100px;
   font-weight: 900;
-  color: #515151;
+  color: #22223b;
   margin: 0
 }
 
@@ -24,7 +24,7 @@ h2 {
   font-family: "Noto Sans TC";
   font-size: 75px;
   font-weight: 500;
-  color: #515151;
+  color: #22223b;
   margin: 0
 }
 
@@ -32,7 +32,7 @@ h3 {
   font-family: "Noto Sans TC";
   font-size: 20px;
   font-weight: 400;
-  color: #515151;
+  color: #22223b;
   margin: 0
 }
 
@@ -104,9 +104,10 @@ h3 {
 }   
 
 .draw-btn {
+    width: 80px;
     font-weight: 750;
     font-size: 56px;
-    background-color: #a8dadc;
+    background-color: #4a4e69;
     color: white;
     font-family: "Noto Sans TC";
     border-radius: 20px;
