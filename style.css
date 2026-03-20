@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -58,7 +62,7 @@ h3 {
 }
 
 .list-item {
-    width: 100%;
+    width: 80%;
     height: 80px;
     font-family: "Noto Sans TC";
     font-weight: 500;
