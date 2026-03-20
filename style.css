@@ -147,7 +147,7 @@ h3 {
 }
 
 .list-item {
-    width: 100%;
+    width: 90%;
     height: 100px;
     font-family: "Noto Sans TC";
     font-weight: 750;
@@ -162,6 +162,13 @@ h3 {
     justify-content: space-between;
     align-items: center;
     transition: transform 0.2s;
+}
+
+.pickedList{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .history {
