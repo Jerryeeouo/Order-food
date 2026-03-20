@@ -69,12 +69,12 @@ h3 {
 
 #foodListInput {
     width: 80%;
-    min-height: 75px;  
+    min-height: 60px;  
     padding: 15px;
     border: 2px solid #6d6875;
     border-radius: 12px;
     
-    font-size: 50px;
+    font-size: 40px;
     line-height: 1.6;       
     color: #333;
 
@@ -92,7 +92,7 @@ h3 {
 }
 
 .list-item {
-    width: 100%;
+    width: 90%;
     height: 100px;
     font-family: "Noto Sans TC";
     font-weight: 750;
