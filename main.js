@@ -87,8 +87,11 @@ function draw(Numbers, count) {
 }
 
 window.updateList = function() {
+    if (window.historyTime) {
+        historyTime = window.historyTime;
+    }
+    
     const displayArea = document.getElementById("pickedList");
-    if (!Array.isArray(historyTime)) return;
     const alreadyList = [...historyTime].reverse();
     
     const htmlContent = alreadyList.map(function(item) {
@@ -103,7 +106,7 @@ window.updateList = function() {
 }
 
 function saveCloud() {
-    if (typeof window.Update === "function") {
+    if (typeof window.Update === "function" && Array.isArray(historyTime)) {
         window.Update(historyTime); 
     }
 }
