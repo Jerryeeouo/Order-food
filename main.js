@@ -38,7 +38,10 @@ function getnum(foodList,num) {
     });
         
     let alreadyPick = historyTime.map(item => item.id);
-        
+
+    const blacklist = ["22", "29"];
+    found = found.filter(num => !blacklist.includes(num))
+    
     found.forEach(seat => {
       if (!alreadyPick.includes(seat)) {
         Numbers.push(seat);
@@ -96,7 +99,7 @@ window.updateList = function() {
     const htmlContent = alreadyList.map(function(item) {
         return `
             <div class="list-item">
-                ${item.id} - ${item.date} 欠抽等級: ${-item.protect}
+                ${item.id} - ${item.date} 危險指數: ${-item.protect}
                 <button onclick="deleteHistory('${item.id}')" class = "delete-button">刪除</button>
             </div>`;
     }).join('');
