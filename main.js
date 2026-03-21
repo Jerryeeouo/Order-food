@@ -51,6 +51,7 @@ function getnum(foodList,num) {
   const date = (now.getMonth() + 1) + "/" + now.getDate();
 
   results.forEach(seat => {
+    historyTime = historyTime.filter(num => !seat.includes(num.id));
     historyTime.push({ id: seat, date: date, protect:0});
   });
   
@@ -76,8 +77,6 @@ function draw(Numbers, count) {
       
       let protected = historyTime.filter(num => found.includes(num.id));
       protected.sort((a, b) => a.protect - b.protect);
-      
-      historyTime = historyTime.filter(num => !protected.includes(num.id));
       
       let protectMin = protected.slice(0, count-picked.length);
       results.push(...protectMin.map(data => data.id));
