@@ -13,10 +13,6 @@ async function fetchOrderedUsers() {
         
         found = data.people.map(name => name.replace("忠", ""));
         
-        if (found.length === 0) {
-            alert("無點餐資訊");
-            return;
-        }
     } catch (error) {
         alert("連線失敗，請重新嘗試");
     }
