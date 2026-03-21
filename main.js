@@ -3,31 +3,32 @@ let results = [];
 let inputList = [];
 let found = [];
 
-function UserInput(num) {
-    inputList = document.getElementById("foodListInput").value;
-    
-    getnum(inputList,num);
+async function fetchOrderedUsers() {
+    const url = "https://asia-east1-float-smooth-ordering.cloudfunctions.net/getOrderedUsers";
+    found = [];   
+
+    try {
+        const response = await fetch(url); 
+        const data = await response.json(); 
+        
+        found = data.people.map(name => name.replace("忠", ""));
+    } catch (error) {
+        alert("失敗，請重新嘗試");
+    }
+}
+
+async function UserInput(num) {
+    await fetchOrderedUsers()
+    if (found.length === 0) {
+        alert("無點餐資訊");
+        return;
+    }
+    getnum(found,num);
 }
 
 function getnum(foodList,num) {
-  const lines = foodList.trim().split('\n');
-  found = [];
+  
   let Numbers = [];
-    
-    // 3. 用 forEach 迴圈開始檢查每一行
-   lines.forEach(function(line) {
-        // 嘗試在這一行搜尋「忠」後面跟著兩個數字
-      const seat = /忠(\d{2})/g;
-      let match;
-     
-      while ((match = seat.exec(line)) !== null) {
-         const seat = match[1];  
-         
-         if (!found.includes(seat)) {
-           found.push(seat);
-         }
-      }
-    });
   
     historyTime.forEach(item => {
       if (found.includes(item.id)) {
