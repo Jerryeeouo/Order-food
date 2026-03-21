@@ -94,7 +94,7 @@ window.updateList = function() {
     const htmlContent = alreadyList.map(function(item) {
         return `
             <div class="list-item">
-                ${item.id} - ${item.date} 剩餘保護: ${item.protect}次
+                ${item.id} - ${item.date} 欠抽等級: ${-item.protect}
                 <button onclick="deleteHistory('${item.id}')" class = "delete-button">刪除</button>
             </div>`;
     }).join('');
@@ -129,7 +129,7 @@ function numAdd(){
   if (historyTime.some(item => item.id == id)) {
     
     historyTime = historyTime.filter(num => num.id !== id);
-    historyTime.push({ id: id, date: date, protect:4});
+    historyTime.push({ id: id, date: date, protect:0});
 
     saveCloud();
     numInput.value = "";
