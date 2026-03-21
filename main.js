@@ -1,4 +1,3 @@
-let alreadyPick = [];
 let historyTime = [];
 let results = [];
 let inputList = [];
@@ -36,8 +35,7 @@ function getnum(foodList,num) {
       }
     });
         
-    historyTime = historyTime.filter(item => item.protect > 0);
-    alreadyPick = historyTime.map(item => item.id);
+    let alreadyPick = historyTime.map(item => item.id);
         
     found.forEach(seat => {
       if (!alreadyPick.includes(seat)) {
@@ -53,7 +51,7 @@ function getnum(foodList,num) {
   const date = (now.getMonth() + 1) + "/" + now.getDate();
 
   results.forEach(seat => {
-    historyTime.push({ id: seat, date: date, protect:4});
+    historyTime.push({ id: seat, date: date, protect:0});
   });
   
   saveCloud()
