@@ -4,6 +4,7 @@ let inputList = [];
 let found = [];
 
 window.loadToday = function() {
+    const now = new Date();
     const today = (now.getMonth() + 1) + "/" + now.getDate();
     const todayPick = historyTime.filter(data => data.protect == 0 && data.date == today);
     const PickNum = todayPick.map(data => data.id);
