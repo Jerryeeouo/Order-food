@@ -71,9 +71,18 @@ h3 {
 
 #today-pick{
     display: flex;
+    justify-content: space-around;
     width: 100%;
     margin-top: 30px;
 }
+
+.todayNum{
+    font-size: 50px;
+    font-weight: 500;
+    color: #22223b;
+    margin: 0
+}
+
 #foodListInput {
     width: 80%;
     min-height: 60px;  
