@@ -24,6 +24,8 @@ async function UserInput(num) {
         alert("無點餐資訊");
         return;
     }
+    const displayArea = document.getElementById("today-pick");
+    displayArea.innerHTML = "";
     getnum(found,num);
 }
 
