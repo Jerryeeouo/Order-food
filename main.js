@@ -3,6 +3,11 @@ let results = [];
 let inputList = [];
 let found = [];
 
+window.loadToday = function() {
+    const todayPick = historyTime.filter(data => data.protect == 0);
+    const PickNum = todayPick.map(data => data.id);
+};
+
 async function fetchOrderedUsers() {
     const url = "https://asia-east1-float-smooth-ordering.cloudfunctions.net/getOrderedUsers";
     found = [];   
