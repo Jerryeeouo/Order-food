@@ -4,7 +4,8 @@ let inputList = [];
 let found = [];
 
 window.loadToday = function() {
-    const todayPick = historyTime.filter(data => data.protect == 0);
+    const today = (now.getMonth() + 1) + "/" + now.getDate();
+    const todayPick = historyTime.filter(data => data.protect == 0 && data.date == today);
     const PickNum = todayPick.map(data => data.id);
     const displayArea = document.getElementById("today-pick");
     displayArea.innerHTML = PickNum.map(item => `<span class="todayNum">${item}</span>`).join('');
