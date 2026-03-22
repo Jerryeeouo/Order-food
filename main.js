@@ -7,7 +7,7 @@ window.loadToday = function() {
     const todayPick = historyTime.filter(data => data.protect == 0);
     const PickNum = todayPick.map(data => data.id);
     const displayArea = document.getElementById("today-pick");
-    displayArea.innerHTML = PickNum.map(id => `<span class="todayNum">${id}</span>`).join('');;
+    displayArea.innerHTML = PickNum.map(item => `<span class="todayNum">${item.id}</span>`).join('');;
 };
 
 async function fetchOrderedUsers() {
