@@ -50,7 +50,7 @@ function getnum(foodList,num) {
 
   draw(Numbers, num);
   
-  alert("今日取餐：" + results.join("、"));
+  alert("今日取餐" + results.join("、"));
     
   const now = new Date();
   const date = (now.getMonth() + 1) + "/" + now.getDate();
