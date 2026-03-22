@@ -31,7 +31,6 @@
             
             const loading = document.getElementById("loading-screen");
             if(loading) loading.style.display = "none";
-            loadToday();
         },(error) => {
             console.error("Firebase 連線錯誤：", error);
             document.getElementById("loading-screen").style.display = "none";
