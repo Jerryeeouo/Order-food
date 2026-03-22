@@ -51,10 +51,14 @@ function getnum(foodList,num) {
   draw(Numbers, num);
   
   alert("今日取餐：" + results.join("、"));
-  
+    
   const now = new Date();
   const date = (now.getMonth() + 1) + "/" + now.getDate();
 
+  const displayArea = document.getElementById("today-pick");
+  
+  displayArea.innerHTML = results.map(id => `<span class="todayNum">${id}</span>`).join('');
+    
   results.forEach(seat => {
     historyTime = historyTime.filter(num => !seat.includes(num.id));
     historyTime.push({ id: seat, date: date, protect:0});
@@ -141,7 +145,7 @@ function numAdd(){
     return;
   }
   
-  historyTime.push({ id: id, date: date, protect:4});
+  historyTime.push({ id: id, date: date, protect:0});
   
   saveCloud();
   numInput.value = "";
