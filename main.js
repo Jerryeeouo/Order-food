@@ -3,7 +3,7 @@ let results = [];
 let inputList = [];
 let found = [];
 
-window.loadToday = function() {
+window.onload = function() {
     const todayPick = historyTime.filter(data => data.protect == 0);
     const PickNum = todayPick.map(data => data.id);
     const displayArea = document.getElementById("today-pick");
