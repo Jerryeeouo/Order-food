@@ -28,7 +28,7 @@
             
             window.historyTime = data || []; 
             if (typeof updateList == "function") updateList(); 
-            
+            if (typeof loadToday == "function") loadToday()
             const loading = document.getElementById("loading-screen");
             if(loading) loading.style.display = "none";
         },(error) => {
