@@ -28,13 +28,20 @@ async function fetchOrderedUsers() {
 }
 
 async function UserInput(num) {
+    const btn = event.target; 
+    btn.disabled = true;
+    
     await fetchOrderedUsers()
     if (found.length === 0) {
         alert("無點餐資訊");
         return;
     }
+
+    setTimeout(() => { btn.disabled = false; }, 1000);
+    
     const displayArea = document.getElementById("today-pick");
     displayArea.innerHTML = "";
+    
     getnum(found,num);
 }
 
