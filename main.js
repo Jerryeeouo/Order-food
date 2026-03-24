@@ -73,7 +73,7 @@ function getnum(foodList,num,havedraw = false) {
     found = found.filter(num => !blacklist.includes(num))
     
     found.forEach(seat => {
-      if (!alreadyPick.includes(seat) && !results.map(data => data.id).includes(seat)) {
+      if (!alreadyPick.includes(seat) && !window.results.map(data => data.id).includes(seat)) {
         Numbers.push(seat);
       }
     });
