@@ -163,7 +163,7 @@ async function reDraw(id) {
         await fetchOrderedUsers();
     }
 
-    let alreadyPickHistory = historyTime.map(item => item.id);
+    let alreadyPickHistory = window.historyTime.map(item => item.id);
     let alreadyPickToday = window.results.map(item => item.id);
     
     let foundNum = found.filter(n => !["22", "29"].includes(n) && !alreadyPickHistory.includes(n) && !alreadyPickToday.includes(n));
