@@ -1,5 +1,6 @@
-if (!window.historyTime) window.historyTime = [];
-if (!window.found) window.found = [];
+window.historyTime = window.historyTime || [];
+window.found = window.found || [];
+window.results = window.results || [];
 
 window.loadToday = function() {
     const now = new Date();
@@ -8,7 +9,7 @@ window.loadToday = function() {
     const Results = window.results || [];
     
     if(Results.length > 0 && Results[0].date !== today){
-        historyTime = historyTime.filter(num => !Results.map(item => item.id).includes(num.id));
+        window.historyTime = window.historyTime.filter(num => !Results.map(item => item.id).includes(num.id));
         
         historyTime.push(...Results);
 
@@ -29,7 +30,8 @@ window.loadToday = function() {
 
 function cancel(){
     if(window.results && window.results.length > 0){
-        historyTime.forEach(item => {
+        if (window.found.length == 0) await fetchOrderedUsers();
+        window.historyTime.forEach(item => {
           if (found.includes(item.id)) {
              item.protect += 1;
           }
@@ -87,7 +89,7 @@ function getnum(foodList,num,havedraw = false) {
       }
     });
         
-    let alreadyPick = historyTime.map(item => item.id);
+    let alreadyPick = window.historyTime.map(item => item.id);
 
     const blacklist = ["22", "29"];
     found = found.filter(num => !blacklist.includes(num))
