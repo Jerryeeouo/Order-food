@@ -21,7 +21,7 @@ window.loadToday = function() {
         return `
             <div class="list-item">
                 ${item.id} - ${item.date} 危險值: ${-item.protect}
-                <button onclick="reDraw('${item.id}')" class = "delete-button">重抽</button>
+                <button onclick="reDraw('${item.id}')" class = "redraw-button">重抽</button>
                 <button onclick="deleteResults('${item.id}')" class = "delete-button">刪除</button>
             </div>`;
     }).join('');
