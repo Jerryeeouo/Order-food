@@ -41,9 +41,6 @@
             const data = d.val();
             window.results = data || []; 
             if (typeof loadToday == "function") loadToday();
-        },(error) => {
-            console.error("Firebase 連線錯誤：", error);
-            document.getElementById("loading-screen").style.display = "none";
         });
     </script>
 
