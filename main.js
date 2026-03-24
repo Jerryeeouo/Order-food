@@ -70,7 +70,7 @@ async function UserInput(num) {
 
     const Results = window.results || [];
     
-    ifResults.length == 0){
+    if(Results.length == 0){
         getnum(found,num,false);
     }else if(Results.length > 0){
         getnum(found,num,true);
