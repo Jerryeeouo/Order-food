@@ -21,6 +21,7 @@ window.loadToday = function() {
         return `
             <div class="list-item">
                 ${item.id} - ${item.date} 危險值: ${-item.protect}
+                <button onclick="reDraw('${item.id}')" class = "delete-button">重抽</button>
                 <button onclick="deleteResults('${item.id}')" class = "delete-button">刪除</button>
             </div>`;
     }).join('');
@@ -53,15 +54,15 @@ async function UserInput(num) {
 
     setTimeout(() => { btn.disabled = false; }, 1000);
     
-    getnum(found,num);
+    getnum(found,num,false);
 }
 
-function getnum(foodList,num) {
+function getnum(foodList,num,havedraw = false) {
   
   let Numbers = [];
   
     historyTime.forEach(item => {
-      if (found.includes(item.id)) {
+      if (found.includes(item.id) && havedraw == false) {
          item.protect -= 1;
       }
     });
@@ -141,6 +142,20 @@ function deleteHistory(id) {
     saveCloud();
 }
 
+async function reDraw(id) {
+    results = results.filter(num => num.id !== id);
+    if (found.length == 0) {
+        await fetchOrderedUsers();
+    }
+    getnum(found,1,true);
+    saveCloud();
+}   
+
+function deleteResults(id) {
+    results = results.filter(num => num.id !== id);
+    saveCloud();
+}
+
 function numAdd(){
   const inputNum = document.getElementById("numInput");
   let id = inputNum.value.trim();
@@ -154,17 +169,12 @@ function numAdd(){
   const now = new Date();
   const date = (now.getMonth() + 1) + "/" + now.getDate();
 
-  if (historyTime.some(item => item.id == id)) {
-    
-    historyTime = historyTime.filter(num => num.id !== id);
-    historyTime.push({ id: id, date: date, protect:0});
-
-    saveCloud();
-    numInput.value = "";
+  if (results.some(item => item.id == id)) {
+    alert("該座號已在取餐清單中");
     return;
   }
   
-  historyTime.push({ id: id, date: date, protect:0});
+  results.push({ id: id, date: date, protect:0});
   
   saveCloud();
   numInput.value = "";
@@ -173,3 +183,5 @@ function numAdd(){
 window.UserInput = UserInput;
 window.numAdd = numAdd;
 window.deleteHistory = deleteHistory;
+window.deleteResults = deleteResults;
+window.reDraw = reDraw;
