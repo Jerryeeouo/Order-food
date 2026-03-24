@@ -73,7 +73,7 @@ function getnum(foodList,num,havedraw = false) {
     found = found.filter(num => !blacklist.includes(num))
     
     found.forEach(seat => {
-      if (!alreadyPick.includes(seat)) {
+      if (!alreadyPick.includes(seat) && !results.includes(seat)) {
         Numbers.push(seat);
       }
     });
@@ -143,7 +143,7 @@ function deleteHistory(id) {
 }
 
 async function reDraw(id) {
-    results = results.filter(num => num.id !== id);
+    window.results = window.results.filter(num => num.id !== id);
     if (found.length == 0) {
         await fetchOrderedUsers();
     }
