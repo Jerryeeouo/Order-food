@@ -5,18 +5,19 @@ window.loadToday = function() {
     const now = new Date();
     const today = (now.getMonth() + 1) + "/" + now.getDate();
     const displayArea = document.getElementById("today-pick");
+    const Results = window.results || [];
     
-    if(results.length > 0 && results[0].date !== today){
-        historyTime = historyTime.filter(num => !results.map(item => item.id).includes(num.id));
+    if(Results.length > 0 && Results[0].date !== today){
+        historyTime = historyTime.filter(num => !Results.map(item => item.id).includes(num.id));
         
-        historyTime.push(...results);
+        historyTime.push(...Results);
 
         window.UpdateToday([]); 
         saveCloud(); 
         return;
     };
     
-    displayArea.innerHTML = results.map(function(item) {
+    displayArea.innerHTML = Results.map(function(item) {
         return `
             <div class="list-item">
                 ${item.id} - ${item.date} 危險值: ${-item.protect}
