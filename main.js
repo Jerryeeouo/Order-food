@@ -154,7 +154,7 @@ window.updateList = function() {
 function saveCloud() {
     if (typeof window.Update == "function") {
         window.Update(window.historyTime); 
-        window.UpdateToday(window.results)
+        window.UpdateToday(window.results);
     }
 }
 
