@@ -142,11 +142,31 @@ function deleteHistory(id) {
 }
 
 async function reDraw(id) {
-    window.results = window.results.filter(num => num.id !== id);
     if (found.length == 0) {
         await fetchOrderedUsers();
     }
-    getnum(found,1,true);
+
+    let alreadyPickHistory = historyTime.map(item => item.id);
+    let alreadyPickToday = window.results.map(item => item.id);
+    
+    let foundNum = found.filter(n => !["22", "29"].includes(n) && !alreadyPickHistory.includes(n) && !alreadyPickToday.includes(n));
+    let newId = draw(foundNum, 1);
+    
+    if (newId.length == 0) {
+        alert("名單已抽完");
+        return;
+    }
+
+    const now = new Date();
+    const date = (now.getMonth() + 1) + "/" + now.getDate();
+    const newPerson = { id: newId[0], date: date, protect: 0 };
+
+    window.results = window.results.map(item => {
+        if (item.id == id) {
+            return newPerson;
+        }
+        return item; 
+    });
     saveCloud();
 }   
 
