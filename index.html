@@ -19,23 +19,32 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
+        
         const cloudData = ref(db, 'historyTime');
+        const cloudDataToday = ref(db, 'results');
 
         window.Update = (data) => set(cloudData, data);
+        window.UpdateToday = (data) => set(cloudDataToday, data);
 
         onValue(cloudData, (d) => {
             const data = d.val();
-            
             window.historyTime = data || []; 
             if (typeof updateList == "function") updateList(); 
-            if (typeof loadToday == "function") loadToday();
             const loading = document.getElementById("loading-screen");
             if(loading) loading.style.display = "none";
         },(error) => {
             console.error("Firebase 連線錯誤：", error);
             document.getElementById("loading-screen").style.display = "none";
         });
-    
+
+        onValue(cloudDataToday, (d) => {
+            const data = d.val();
+            window.results = data || []; 
+            if (typeof loadToday == "function") loadToday();
+        },(error) => {
+            console.error("Firebase 連線錯誤：", error);
+            document.getElementById("loading-screen").style.display = "none";
+        });
     </script>
 
     <title>|取餐抽籤系統|</title>
