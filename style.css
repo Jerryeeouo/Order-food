@@ -1,3 +1,14 @@
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 * {
     box-sizing: border-box;
 }
@@ -77,6 +88,7 @@ h3 {
 }   
 
 #today-pick{
+    animation: fadeInUp 0.5s ease backwards;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -171,6 +183,7 @@ h3 {
 }
 
 .list-item {
+    animation: fadeInUp 0.5s ease backwards;
     width: 90%;
     height: 100px;
     font-family: "Noto Sans TC";
