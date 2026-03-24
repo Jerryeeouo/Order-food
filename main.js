@@ -1,5 +1,5 @@
 window.historyTime = window.historyTime || [];
-window.found = window.found || [];
+found = [];
 window.results = window.results || [];
 
 window.loadToday = function() {
@@ -152,7 +152,7 @@ window.updateList = function() {
 }
 
 function saveCloud() {
-    if (typeof window.Update == "function" && Array.isArray(historyTime)) {
+    if (typeof window.Update == "function") {
         window.Update(window.historyTime); 
         window.UpdateToday(window.results)
     }
