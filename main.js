@@ -21,7 +21,7 @@ window.loadToday = function() {
         return `
             <div class="list-item">
                 ${item.id} - ${item.date} 危險值: ${-item.protect}
-                <button onclick="deleteHistory('${item.id}')" class = "delete-button">重抽</button>
+                <button onclick="deleteResults('${item.id}')" class = "delete-button">刪除</button>
             </div>`;
     }).join('');
 };
@@ -81,11 +81,13 @@ function getnum(foodList,num) {
   const date = (now.getMonth() + 1) + "/" + now.getDate();
 
   const Picked = draw(Numbers, num);
-  window.results = Picked.map(id => ({
+  const Results = Picked.map(id => ({
         id: id,
         date: date,
         protect: 0
   }));
+
+  window.results.push(...Results)
   saveCloud();
 }
 
