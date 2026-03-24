@@ -27,6 +27,19 @@ window.loadToday = function() {
     }).join('');
 };
 
+function cancel(){
+    if(window.results !== 0){
+        historyTime.forEach(item => {
+          if (found.includes(item.id)) {
+             item.protect -= 1;
+          }
+        });
+    window.UpdateToday([]); 
+    }else{
+        alert("今日尚未抽取取餐人選")
+    }    
+}
+
 async function fetchOrderedUsers() {
     const url = "https://asia-east1-float-smooth-ordering.cloudfunctions.net/getOrderedUsers";
     found = [];   
@@ -53,8 +66,12 @@ async function UserInput(num) {
     }
 
     setTimeout(() => { btn.disabled = false; }, 1000);
-    
-    getnum(found,num,false);
+
+    if(results !== 0){
+        getnum(found,num,false);
+    }else if(results > 0){
+        getnum(found,num,true);
+    }    
 }
 
 function getnum(foodList,num,havedraw = false) {
@@ -136,11 +153,6 @@ function saveCloud() {
     }
 }
 
-function deleteHistory(id) {
-    historyTime = historyTime.filter(num => num.id !== id);
-    saveCloud();
-}
-
 async function reDraw(id) {
     if (found.length == 0) {
         await fetchOrderedUsers();
@@ -171,7 +183,11 @@ async function reDraw(id) {
 }   
 
 function deleteResults(id) {
-    results = results.filter(num => num.id !== id);
+    if(results.length > 1){
+         window.results = window.results.filter(num => num.id !== id);
+    }else{
+        alert("至少需一人取餐");
+    };  
     saveCloud();
 }
 
@@ -201,6 +217,5 @@ function numAdd(){
 
 window.UserInput = UserInput;
 window.numAdd = numAdd;
-window.deleteHistory = deleteHistory;
 window.deleteResults = deleteResults;
 window.reDraw = reDraw;
