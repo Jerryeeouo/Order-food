@@ -1,15 +1,28 @@
 let historyTime = [];
-let results = [];
-let inputList = [];
 let found = [];
 
 window.loadToday = function() {
     const now = new Date();
     const today = (now.getMonth() + 1) + "/" + now.getDate();
-    const todayPick = historyTime.filter(data => data.protect == 0 && data.date == today);
-    const PickNum = todayPick.map(data => data.id);
     const displayArea = document.getElementById("today-pick");
-    displayArea.innerHTML = PickNum.map(item => `<span class="todayNum">${item}</span>`).join('');
+    
+    if(results.length > 0 && results[0].date !== today){
+        historyTime = historyTime.filter(num => !results.map(item => item.id).includes(num.id));
+        
+        historyTime.push(...results);
+
+        window.UpdateToday([]); 
+        saveCloud(); 
+        return;
+    };
+    
+    displayArea.innerHTML = results.map(function(item) {
+        return `
+            <div class="list-item">
+                ${item.id} - ${item.date} 危險值: ${-item.protect}
+                <button onclick="deleteHistory('${item.id}')" class = "delete-button">重抽</button>
+            </div>`;
+    }).join('');
 };
 
 async function fetchOrderedUsers() {
@@ -39,9 +52,6 @@ async function UserInput(num) {
 
     setTimeout(() => { btn.disabled = false; }, 1000);
     
-    const displayArea = document.getElementById("today-pick");
-    displayArea.innerHTML = "";
-    
     getnum(found,num);
 }
 
@@ -65,27 +75,17 @@ function getnum(foodList,num) {
         Numbers.push(seat);
       }
     });
-
-  draw(Numbers, num);
-  
-  alert("今日取餐:" + results.join("、"));
     
   const now = new Date();
   const date = (now.getMonth() + 1) + "/" + now.getDate();
 
-  const displayArea = document.getElementById("today-pick");
-  
-  displayArea.innerHTML = results.map(id => `<span class="todayNum">${id}</span>`).join('');
-    
-  results.forEach(seat => {
-    historyTime = historyTime.filter(num => !seat.includes(num.id));
-    historyTime.push({ id: seat, date: date, protect:0});
-  });
-  
-  saveCloud()
-
-  results = [];
-  inputList = [];
+  const Picked = draw(Numbers, num);
+  window.results = Picked.map(id => ({
+        id: id,
+        date: date,
+        protect: 0
+  }));
+  saveCloud();
 }
 
 function draw(Numbers, count) {
@@ -97,17 +97,14 @@ function draw(Numbers, count) {
   
     let picked = Seatnum.slice(0, count);
     
-    if(picked.length >= count){
-      results.push(...picked);
-    }else if(picked.length < count){
-      results.push(...picked);
-      
+    if(picked.length < count){  
       let protected = historyTime.filter(num => found.includes(num.id));
       protected.sort((a, b) => a.protect - b.protect);
       
       let protectMin = protected.slice(0, count-picked.length);
-      results.push(...protectMin.map(data => data.id));
+      picked.push(...protectMin.map(data => data.id));
     }
+    return picked;
 }
 
 window.updateList = function() {
@@ -130,8 +127,9 @@ window.updateList = function() {
 }
 
 function saveCloud() {
-    if (typeof window.Update === "function" && Array.isArray(historyTime)) {
+    if (typeof window.Update == "function" && Array.isArray(historyTime)) {
         window.Update(historyTime); 
+        window.UpdateToday(results)
     }
 }
 
