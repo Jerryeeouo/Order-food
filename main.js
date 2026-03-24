@@ -11,7 +11,7 @@ window.loadToday = function() {
     if(Results.length > 0 && Results[0].date !== today){
         window.historyTime = window.historyTime.filter(num => !Results.map(item => item.id).includes(num.id));
         
-        historyTime.push(...Results);
+        window.historyTime.push(...Results);
 
         window.UpdateToday([]); 
         saveCloud(); 
@@ -28,7 +28,7 @@ window.loadToday = function() {
     }).join('');
 };
 
-function cancel(){
+async function cancel(){
     if(window.results && window.results.length > 0){
         if (window.found.length == 0) await fetchOrderedUsers();
         window.historyTime.forEach(item => {
@@ -124,7 +124,7 @@ function draw(Numbers, count) {
     let picked = Seatnum.slice(0, count);
     
     if(picked.length < count){  
-      let protected = historyTime.filter(num => found.includes(num.id));
+      let protected = window.historyTime.filter(num => window.found.includes(num.id) && !window.results.some(r => r.id == num.id));
       protected.sort((a, b) => a.protect - b.protect);
       
       let protectMin = protected.slice(0, count-picked.length);
