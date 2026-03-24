@@ -119,6 +119,25 @@ h3 {
     border: none;
 }
 
+#Cancel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 50px;
+}
+
+#Cancel-btn {
+    width: 200px;
+    font-weight: 750;
+    font-size: 56px;
+    background-color: #E5989B;
+    color: white;
+    font-family: "Noto Sans TC";
+    border-radius: 20px;
+    border: none;
+}
+
 #in-list{
     display: flex;
     justify-content: center;
