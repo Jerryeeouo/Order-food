@@ -61,16 +61,18 @@ async function UserInput(num) {
     btn.disabled = true;
     
     await fetchOrderedUsers()
-    if (found.length === 0) {
+    if (found.length == 0) {
         alert("無點餐資訊");
         return;
     }
 
     setTimeout(() => { btn.disabled = false; }, 1000);
 
-    if(window.results.length == 0){
+    const Results = window.results || [];
+    
+    ifResults.length == 0){
         getnum(found,num,false);
-    }else if(window.results.length > 0){
+    }else if(Results.length > 0){
         getnum(found,num,true);
     }    
 }
