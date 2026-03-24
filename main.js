@@ -28,13 +28,14 @@ window.loadToday = function() {
 };
 
 function cancel(){
-    if(window.results !== 0){
+    if(window.results && window.results.length > 0){
         historyTime.forEach(item => {
           if (found.includes(item.id)) {
-             item.protect -= 1;
+             item.protect += 1;
           }
         });
-    window.UpdateToday([]); 
+    window.results = [];
+    saveCloud();
     }else{
         alert("今日尚未抽取取餐人選")
     }    
@@ -67,9 +68,9 @@ async function UserInput(num) {
 
     setTimeout(() => { btn.disabled = false; }, 1000);
 
-    if(results !== 0){
+    if(window.results.length == 0){
         getnum(found,num,false);
-    }else if(results > 0){
+    }else if(window.results.length > 0){
         getnum(found,num,true);
     }    
 }
