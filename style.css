@@ -79,9 +79,9 @@ h3 {
 #today-pick{
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     width: 100%;
-    margin-top: 30px;
-    gap:10px;
 }
 
 .todayNum{
@@ -89,24 +89,6 @@ h3 {
     font-weight: 500;
     color: #22223b;
     margin: 0
-}
-
-#foodListInput {
-    width: 80%;
-    min-height: 60px;  
-    padding: 15px;
-    border: 2px solid #6d6875;
-    border-radius: 12px;
-    
-    font-size: 40px;
-    line-height: 1.6;       
-    color: #333;
-
-    background-color: #ffffff;
-    box-sizing: border-box;  
-    resize: vertical;  
-    outline: none;
-    transition: all 0.3s ease;
 }
 
 #input-box {
