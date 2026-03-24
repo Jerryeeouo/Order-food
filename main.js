@@ -1,5 +1,5 @@
-let historyTime = [];
-let found = [];
+if (!window.historyTime) window.historyTime = [];
+if (!window.found) window.found = [];
 
 window.loadToday = function() {
     const now = new Date();
@@ -81,7 +81,7 @@ function getnum(foodList,num,havedraw = false) {
   
   let Numbers = [];
   
-    historyTime.forEach(item => {
+    window.historyTime.forEach(item => {
       if (found.includes(item.id) && havedraw == false) {
          item.protect -= 1;
       }
@@ -151,8 +151,8 @@ window.updateList = function() {
 
 function saveCloud() {
     if (typeof window.Update == "function" && Array.isArray(historyTime)) {
-        window.Update(historyTime); 
-        window.UpdateToday(results)
+        window.Update(window.historyTime); 
+        window.UpdateToday(window.results)
     }
 }
 
