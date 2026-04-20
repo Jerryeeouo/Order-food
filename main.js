@@ -244,5 +244,5 @@ window.UserInput = UserInput;
 window.numAdd = numAdd;
 window.deleteResults = deleteResults;
 window.reDraw = reDraw;
-window.getpoint = getPoint;
-window.losepoint = losePoint;
+window.getPoint = getPoint;
+window.losePoint = losePoint;
