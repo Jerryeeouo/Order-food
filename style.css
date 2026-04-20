@@ -196,14 +196,6 @@ h3 {
   width: 100%;
 }
 
-.list-item button:first-of-type{
-    magin-left: auto;
-}
-
-.list-item button{
-    magin-left: 4px;
-}
-
 .history {
   display: flex;
   justify-content: center;
