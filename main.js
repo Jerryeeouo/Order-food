@@ -107,7 +107,7 @@ function getnum(foodList,num,havedraw = false) {
   const Results = Picked.map(id => ({
         id: id,
         date: date,
-        protect: 0
+        protect: 0,
   }));
 
   window.results.push(...Results)
@@ -145,10 +145,28 @@ window.updateList = function() {
         return `
             <div class="list-item">
                 ${item.id} - ${item.date} 危險值: ${-item.protect}
+                <button onclick="getPoint('${item.id}')" class = "redraw-button">+1</button>
+                <button onclick="losePoint('${item.id}')" class = "delete-button">-1</button>
             </div>`;
     }).join('');
     
     displayArea.innerHTML = htmlContent;
+}
+
+function getPoint(num){
+    window.historyTime.forEach(item => {
+      if (item.id == num) {
+         item.protect -= 1;
+      }
+    saveCloud();
+}
+
+function getPoint(num){
+    window.historyTime.forEach(item => {
+      if (item.id == num) {
+         item.protect += 1;
+      }
+    saveCloud();
 }
 
 function saveCloud() {
@@ -224,3 +242,5 @@ window.UserInput = UserInput;
 window.numAdd = numAdd;
 window.deleteResults = deleteResults;
 window.reDraw = reDraw;
+window.getpoint = getpoint;
+window.losepoint = losepoint;
