@@ -158,6 +158,7 @@ function getPoint(num){
       if (item.id == num) {
          item.protect -= 1;
       }
+    });
     saveCloud();
 }
 
@@ -166,6 +167,7 @@ function losePoint(num){
       if (item.id == num) {
          item.protect += 1;
       }
+    });
     saveCloud();
 }
 
