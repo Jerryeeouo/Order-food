@@ -161,7 +161,7 @@ function getPoint(num){
     saveCloud();
 }
 
-function getPoint(num){
+function losePoint(num){
     window.historyTime.forEach(item => {
       if (item.id == num) {
          item.protect += 1;
