@@ -22,8 +22,10 @@ window.loadToday = function() {
         return `
             <div class="list-item">
                 ${item.id} - ${item.date} 危險值: ${-item.protect}
-                <button onclick="reDraw('${item.id}')" class = "redraw-button">重抽</button>
-                <button onclick="deleteResults('${item.id}')" class = "delete-button">刪除</button>
+                <div>
+                    <button onclick="reDraw('${item.id}')" class = "redraw-button">重抽</button>
+                    <button onclick="deleteResults('${item.id}')" class = "delete-button">刪除</button>
+                </div>
             </div>`;
     }).join('');
 };
@@ -145,8 +147,10 @@ window.updateList = function() {
         return `
             <div class="list-item">
                 ${item.id} - ${item.date} 危險值: ${-item.protect}
-                <button onclick="getPoint('${item.id}')" class = "redraw-button">+1</button>
-                <button onclick="losePoint('${item.id}')" class = "delete-button">-1</button>
+                <div>
+                    <button onclick="getPoint('${item.id}')" class = "redraw-button">+1</button>
+                    <button onclick="losePoint('${item.id}')" class = "delete-button">-1</button>
+                </div>
             </div>`;
     }).join('');
     
