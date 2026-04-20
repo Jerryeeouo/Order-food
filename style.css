@@ -196,9 +196,10 @@ h3 {
   width: 100%;
 }
 
-#pickedList-button{
+#pickedList button:first-of-type{
     magin-left: auto;
 }
+
 .history {
   display: flex;
   justify-content: center;
